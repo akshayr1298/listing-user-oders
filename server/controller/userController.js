@@ -16,26 +16,21 @@ const createUser = async (req, res) => {
 };
 
 const displayOrders = async (req, res) => {
-
   try {
     const displayList = await Order.find().populate("user_id");
     console.log(displayList);
-    return res.status(200).json(displayList );
+    return res.status(200).json(displayList);
   } catch (error) {}
 };
 
-const updateStatus = async(req,res)=>{
-  console.log('resss');
+const updateStatus = async (req, res) => {
   try {
-    const {id,status} = req.body
-    const update = await Order.updateOne({_id:id},{status:status})
-    console.log(update);
-    return res.status(200).json({message:'update successfully',update})
+    const { id, status } = req.body;
+    const update = await Order.updateOne({ _id: id }, { status: status });
+    return res.status(200).json({ message: "update successfully", update });
   } catch (error) {
     console.log(error);
   }
+};
 
-}
-
-
-module.exports = { createUser, displayOrders ,updateStatus};
+module.exports = { createUser, displayOrders, updateStatus };
